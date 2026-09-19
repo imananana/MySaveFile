@@ -10,7 +10,9 @@ import { CaretLeft, CaretRight, ArrowRight } from '@phosphor-icons/react';
  * Prerendered (entry-server.tsx): everything renders statically, the
  * <details> rows work without JS.
  *
- * ★ No GitHub links anywhere — the repo is private; credits live inline.
+ * The code is open source (GPLv3) and the "Source code" row links the public
+ * repository — SOURCE_URL below. That repository is a cleaned snapshot, not the
+ * one this app deploys from; never link the private one.
  */
 
 const FEEDBACK_EMAIL = 'iman@mysavefile.com';
@@ -20,6 +22,8 @@ const MAILTO = `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent('Hello fro
     link's utm_* tracking params are deliberately stripped). The old
     /imanistan personal account is retired. Empty = the button doesn't render. */
 const PATREON_URL = 'https://www.patreon.com/imanistani';
+
+const SOURCE_URL = 'https://github.com/imananana/MySaveFile';
 
 export function About() {
   return (
@@ -119,7 +123,8 @@ export function About() {
             <AboutRow title="Format knowledge">
               <p>
                 The planner is an independent re-implementation of community-documented file
-                formats. No EA / Maxis code or assets are redistributed. With thanks to:
+                formats. It contains no EA / Maxis code, and no code from the projects below.
+                With thanks to:
               </p>
               <ul>
                 <li>
@@ -143,6 +148,19 @@ export function About() {
                 reverse-engineered for this project against real saves.
               </p>
             </AboutRow>
+            <AboutRow title="Source code">
+              <p>
+                The planner's code is open source under the GPLv3 licence, the same licence as
+                s4pi.
+              </p>
+              <p>
+                <ExtLink href={SOURCE_URL}>View the source on GitHub</ExtLink>
+              </p>
+              <p>
+                The MySaveFile name, logo, art and writing aren't part of that licence, and EA's
+                icons and maps aren't in the repository.
+              </p>
+            </AboutRow>
             <AboutRow title="Tools & type">
               <ul>
                 <li>React, TypeScript, Vite, Zustand · Node.js, Express, PostgreSQL</li>
@@ -157,8 +175,9 @@ export function About() {
             <AboutRow title="EA / Maxis">
               <p>
                 The Sims 4, its world maps, icons and game data are © Electronic Arts Inc. /
-                Maxis. The planner reads your local save in your browser and displays what it
-                contains; no EA asset is ever redistributed to other users. This is an unofficial,
+                Maxis. The planner reads your local save in your browser, and shows the game's
+                icons and world maps so your plan looks like your save; those images remain EA's.
+                This is an unofficial,
                 non-commercial fan project, not affiliated with or endorsed by EA. "The Sims" is a
                 trademark of Electronic Arts Inc.
               </p>

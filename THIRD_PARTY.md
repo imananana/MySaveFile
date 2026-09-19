@@ -119,7 +119,7 @@ installed. All are compatible with GPLv3.
 - **Not covered — all rights reserved, © Iman Akhtar**: the MySaveFile name and
   logo, the artwork (the clay plumbob, favicons, link-preview cards, landing
   images, portrait), and the written copy — the landing page, About page, help
-  pages and guides in `content/`. They are here so the app builds and reads as
+  pages and guides. They are here so the app builds and reads as
   it does live; please don't reuse them for another site or product.
 - **Not included at all**: EA's icons and maps (see above). The folders they
   load from are listed in the README, with how to supply your own.
