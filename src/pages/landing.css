@@ -1,0 +1,104 @@
+/* Landing hero — FLUID, not stepped.
+   ---------------------------------------------------------------------------
+   Written as real CSS rather than breakpoint classes on purpose. Sized in
+   steps, this hero had cliffs: an iPad Pro (1024) and an iPad Air (820) landed
+   in different layouts, and every window between two breakpoints got whichever
+   one happened to be nearest rather than one that fitted it. Percentages and
+   clamp() give one composition that holds at every width instead.
+
+   ONE switch remains, at 720px, and it is a real difference in kind: below it
+   the copy needs the whole width, so the map goes behind it as texture; above
+   it the copy takes a share and the map keeps the rest. 720 rather than a
+   round 768 so an iPad mini held upright (744) keeps the map, like every
+   larger tablet does.
+
+   The numbers are tied to each other, so change them together:
+   the copy's right edge lands at 50% of the window at 760 and 1024, easing to
+   34% at 1920 — and --lp-wash holds near-solid to 46% before clearing, which
+   is what keeps the sub-copy off the map at every size in between. */
+
+.lp-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.lp-pad {
+  padding-inline: clamp(16px, 4vw, 72px);
+  padding-top: clamp(92px, 8vw, 124px);
+  padding-bottom: clamp(56px, 6vw, 80px);
+}
+
+.lp-copy { max-width: 576px; }
+
+/* The two modes meet at 760, so their type has to meet there too: capped at 40
+   below and floored at 36 above, the headline eases across the switch instead
+   of dropping 46 to 34 as the window gets WIDER. */
+.lp-title {
+  font-size: clamp(30px, 7.4vw, 40px);
+  line-height: 1.05;
+}
+
+.lp-logo { height: clamp(48px, 4.4vw, 64px); }
+
+/* Below the switch: the map lies under the copy, so it is nearly washed out. */
+.lp-wash-down {
+  background: linear-gradient(180deg,
+    rgba(250, 248, 244, 0.97) 0%,
+    rgba(250, 248, 244, 0.94) 55%,
+    rgba(250, 248, 244, 0.66) 100%);
+}
+.lp-wash-side { display: none; }
+
+/* Pins and the chip only exist where there is map for them to sit on. */
+.lp-pin, .lp-chip { display: none; }
+
+@media (min-width: 720px) {
+  .lp-hero { min-height: clamp(470px, 52vw, 740px); }
+  .lp-pad { padding-bottom: 0; }
+  .lp-copy { max-width: min(580px, 46vw); }
+  .lp-title { font-size: clamp(36px, 4.3vw, 62px); line-height: 1.03; }
+
+  .lp-wash-down { display: none; }
+  .lp-wash-side {
+    display: block;
+    background: linear-gradient(90deg,
+      rgba(250, 248, 244, 0.97) 0%,
+      rgba(250, 248, 244, 0.95) 46%,
+      rgba(250, 248, 244, 0.55) 64%,
+      rgba(250, 248, 244, 0.06) 86%);
+  }
+
+  .lp-pin { display: flex; }
+  .lp-chip { display: inline-flex; }
+}
+
+/* Stacked, the three beats want a column rather than the whole width: a 214px
+   polaroid centred over a 744px-wide paragraph reads as an accident rather
+   than a layout. They go side by side once three of them can hold their own
+   width — the share card is the constraint, since its type is sized from the
+   card and stops being readable much under 280px. */
+.lp-beat {
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .lp-beat { max-width: none; }
+}
+
+/* A pin is a fixed-width card on a shrinking map, so its own percentage will
+   eventually push it off the right edge. Each one stops short of that edge
+   instead of being clipped by it. */
+.lp-pin {
+  left: min(var(--lp-x), calc(100% - 210px));
+  /* Its share of a SHORT hero can land the top pin in the nav's lap, next to
+     the Synced chip, so it also keeps a floor in real pixels. */
+  top: max(var(--lp-y), 132px);
+}
+
+/* Three cards need roughly a laptop's worth of map before they stop colliding;
+   below that the middle one steps out rather than overlapping its neighbour. */
+@media (max-width: 999px) {
+  .lp-pin--crowd { display: none; }
+}

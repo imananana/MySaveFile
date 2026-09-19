@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon-logo/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-logo/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-logo/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-logo/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-logo/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/favicon-logo/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon-logo/site.webmanifest" />
+    <meta name="theme-color" content="#16a34a" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MySaveFile · The Sims 4 Save Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Design tokens — semantic palette. Hex values live in src/index.css as
+      // CSS variables; this config only aliases them.
+      //
+      // PICK BY ROLE, NOT BY COLOR. Ask "what is this signaling?", not "what
+      // shade of green do I want?".
+      //
+      // Surfaces:
+      //   c-base    page background (cream off-white canvas)
+      //   c-card    elevated surface (panels, modals, sidebar)
+      //   c-panel   warm subtle separation
+      //   c-deep    accent-tinted surface (sidebar item hover etc.)
+      //
+      // Primary accent — green:
+      //   c-accent / c-accent-hover / c-accent-soft / c-accent-border
+      //   c-green   darker green for text on white (success labels)
+      //
+      // Secondary accent — plum: use for "custom" indicators, nav highlights
+      // that aren't the primary action, and decorative inline links.
+      //   c-secondary / c-secondary-hover / c-secondary-soft / c-secondary-border
+      //
+      // Status:
+      //   c-warn / c-warn-bg / c-warn-border       warnings
+      //   c-red / c-red-bg / c-red-border / c-red-muted  destructive / error
+      //   c-gold                                   highlight (sparingly used)
+      //
+      // Text — light to dark:
+      //   c-text    main body
+      //   c-muted   secondary (descriptions, labels)
+      //   c-dim     tertiary (meta, hints)
+      //   c-faint   placeholder / extremely de-emphasized
+      //
+      // Borders — light to saturated:
+      //   c-border        default neutral
+      //   c-border-mid    soft green
+      //   c-border-green  saturated green for accent-bg surfaces
+      // All tokens reference CSS variables defined in src/index.css. To swap
+      // themes (e.g. dark mode), only the variables need to change; no class
+      // names anywhere in the codebase need updating.
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'c-base':              'var(--c-base)',
+              'c-card':              'var(--c-card)',
+              'c-panel':             'var(--c-panel)',
+              'c-stage':             'var(--c-stage)',
+              'c-deep':              'var(--c-deep)',
+
+              'c-accent':            'var(--c-accent)',
+              'c-accent-hover':      'var(--c-accent-hover)',
+              'c-accent-soft':       'var(--c-accent-soft)',
+              'c-accent-border':     'var(--c-accent-border)',
+              'c-green':             'var(--c-green)',
+
+              'c-secondary':         'var(--c-secondary)',
+              'c-secondary-hover':   'var(--c-secondary-hover)',
+              'c-secondary-soft':    'var(--c-secondary-soft)',
+              'c-secondary-border':  'var(--c-secondary-border)',
+
+              'c-gold':              'var(--c-gold)',
+
+              'c-warn':              'var(--c-warn)',
+              'c-warn-bg':           'var(--c-warn-bg)',
+              'c-warn-border':       'var(--c-warn-border)',
+
+              'c-text':              'var(--c-text)',
+              'c-muted':             'var(--c-muted)',
+              'c-dim':               'var(--c-dim)',
+              'c-faint':             'var(--c-faint)',
+
+              'c-border':            'var(--c-border)',
+              'c-border-mid':        'var(--c-border-mid)',
+              'c-border-green':      'var(--c-border-green)',
+
+              'c-red-muted':         'var(--c-red-muted)',
+              'c-red':               'var(--c-red)',
+              'c-red-border':        'var(--c-red-border)',
+              'c-red-bg':            'var(--c-red-bg)',
+            },
+            fontFamily: {
+              sans:   ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            },
+            // Type scale. Tailwind defaults (xs=12 / sm=14 / base=16 / lg=18 /
+            // xl=20 / 2xl=24 / 3xl=30) cover most use; we add 3xs and 2xs for
+            // the very small caption sizes that show up everywhere as
+            // text-[9px] / text-[10px].
+            //
+            // Suggested roles:
+            //   text-3xs  (9px)  — trademark / micro disclaimer
+            //   text-2xs  (10px) — uppercase labels, badges, meta
+            //   text-xs   (12px) — small body, table cells, dense lists
+            //   text-sm   (13/14)— default body, nav, most buttons
+            //   text-base (16px) — large body / form inputs
+            //   text-lg   (18px) — section heads
+            //   text-xl   (20px) — page titles
+            //   text-2xl  (24px) — display
+            //   text-3xl  (30px) — hero
+            fontSize: {
+              '3xs': ['9px',  { lineHeight: '13px' }],
+              '2xs': ['10px', { lineHeight: '14px' }],
+            },
+            // Uppercase-label letter-spacing presets so we stop typing
+            // tracking-[0.08em] / [0.1em] / [0.12em] by hand.
+            letterSpacing: {
+              'label':   '0.08em',  // small caps for nav section heads
+              'label-lg':'0.12em',  // wider labels (THE SIMS 4 wordmark, tile headings)
+              'display': '-0.015em',// negative tracking for big display numbers
+              'headline':'-0.02em', // even tighter for hero
+            },
+            borderRadius: {
+              'sm': 'var(--r-sm)',
+              'md': 'var(--r-md)',
+              'lg': 'var(--r-lg)',
+              'xl': 'var(--r-xl)',
+            },
+          },
+        },
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

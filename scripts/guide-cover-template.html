@@ -1,0 +1,120 @@
+<!--
+  MySaveFile — Guide Cover Template (1200x630, OG ratio)
+  ------------------------------------------------------
+  Rendered headlessly by scripts/render-guide-covers.mjs. The script swaps:
+    - .title       <- guide frontmatter `title`
+    - .pill        <- "For Builders" / "For Players" / "Guide" (from `audience`)
+    - .shot        <- a per-guide screenshot from scripts/guide-cover-shots/<slug>.*
+  The plumbob below is the real logo (black background removed, embedded inline).
+  Brand tokens in :root match the app (src/index.css).
+-->
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#faf8f4; --card:#ffffff; --panel:#f3efe7;
+    --green:#16a34a; --green-hover:#15803d; --green-soft:#ecfdf3; --green-border:#bbf7d0;
+    --plum:#7c5cbf; --plum-soft:#f3eefb; --plum-border:#d6c5f0;
+    --text:#1a1714; --muted:#4b4439; --dim:#7a7268; --faint:#a89e8f;
+    --border:#e8e1d4;
+    --grad:linear-gradient(135deg,#ecfdf3 0%,#f3eefb 100%);
+    --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e7e0d4;font-family:var(--font);display:flex;flex-direction:column;
+       align-items:center;gap:18px;padding:32px;min-height:100vh}
+  .hint{font-size:13px;color:#6b6357;max-width:1200px;text-align:center;line-height:1.5}
+  .hint b{color:#3a342c}
+
+  /* ===== THE COVER (exactly 1200x630) ===== */
+  .cover{
+    position:relative;width:1200px;height:630px;background:var(--base);
+    overflow:hidden;display:flex;align-items:stretch;
+    box-shadow:0 24px 60px -20px rgba(26,23,20,.35);
+    font-family:var(--font);flex:0 0 auto;
+  }
+  .cover::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(900px 500px at 100% 0%, #f3eefb 0%, transparent 55%),
+               radial-gradient(800px 600px at 0% 100%, #ecfdf3 0%, transparent 50%);
+    opacity:.9;pointer-events:none}
+  .watermark{position:absolute;right:-40px;bottom:-80px;height:420px;width:auto;opacity:.07;
+    pointer-events:none;filter:saturate(.85)}
+
+  .left{position:relative;z-index:2;width:46%;padding:72px 24px 64px 72px;
+        display:flex;flex-direction:column}
+  .kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+          color:var(--plum)}
+  .title{margin-top:22px;font-size:56px;line-height:1.07;font-weight:800;
+          letter-spacing:-.02em;color:var(--text)}
+  .pill{margin-top:26px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;
+        background:var(--green-soft);color:var(--green-hover);border:1px solid var(--green-border);
+        font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+        padding:8px 16px;border-radius:999px}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+  .lockup{margin-top:auto;display:flex;align-items:center;gap:14px}
+  .lockup-logo{height:48px;width:auto;display:block}
+  .wordmark{display:flex;flex-direction:column;line-height:1}
+  .wordmark .name{font-size:23px;font-weight:800;letter-spacing:-.01em;color:var(--text)}
+  .wordmark .url{margin-top:5px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--dim)}
+
+  .right{position:relative;z-index:2;width:54%;display:flex;align-items:center;
+         justify-content:center;padding:56px 64px 56px 12px}
+  .frame{width:100%;background:var(--card);border:1px solid var(--border);border-radius:18px;
+         box-shadow:0 26px 50px -18px rgba(22,163,74,.22),0 8px 20px -10px rgba(26,23,20,.15);
+         overflow:hidden;transform:rotate(1.1deg)}
+  .bar{height:34px;background:var(--panel);border-bottom:1px solid var(--border);
+       display:flex;align-items:center;gap:7px;padding:0 14px}
+  .bar i{width:9px;height:9px;border-radius:50%;background:#d9d2c6;display:block}
+  .bar .addr{margin-left:12px;font-size:11px;font-weight:600;color:var(--dim);
+             background:var(--base);border:1px solid var(--border);border-radius:6px;
+             padding:3px 12px}
+  .shot{aspect-ratio:16/10;width:100%;display:block}
+  .shot-img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+        background:var(--grad);color:var(--green-hover);font-size:14px;font-weight:700;
+        letter-spacing:.04em;text-align:center;padding:20px}
+</style>
+
+<div class="hint">
+  Live preview of the cover (exactly <b>1200x630</b>). Edit the three marked spots in the source,
+  then screenshot the cover at 100%, or hand this file to Claude Code to auto-render guide covers.
+</div>
+
+<div class="cover">
+
+  <img class="watermark" src="PLUMBOB_DATA_URI" alt="" aria-hidden="true">
+
+  <div class="left">
+    <!-- kicker (usually leave as-is) -->
+    <div class="kicker">The Sims 4 Save Planner</div>
+
+    <!-- TITLE (replaced by render script) -->
+    <h1 class="title">How to Build a Sims&nbsp;4 Save File Worth Sharing</h1>
+
+    <!-- AUDIENCE pill (replaced by render script) -->
+    <div class="pill"><span class="dot"></span>For Builders</div>
+
+    <!-- logo lockup: real plumbob + wordmark -->
+    <div class="lockup">
+      <img class="lockup-logo" src="PLUMBOB_DATA_URI" alt="MySaveFile plumbob">
+      <div class="wordmark">
+        <span class="name">MySaveFile</span>
+        <span class="url">mysavefile.com</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="frame">
+      <div class="bar"><i></i><i></i><i></i><span class="addr">mysavefile.com</span></div>
+      <div class="shot">
+        <!-- SCREENSHOT slot (replaced by render script) -->
+        <div class="shot-placeholder">Drop a real screenshot here<br>(approx 16:10 - Showcase, world map, or Diversity)</div>
+      </div>
+    </div>
+  </div>
+
+</div>

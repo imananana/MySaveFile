@@ -1,0 +1,17 @@
+{
+  "name": "MySaveFile \u2014 The Sims 4 Save Planner",
+  "short_name": "MySaveFile",
+  "description": "Plan, organize, and showcase your Sims 4 save \u2014 it reads your save file so you never retype it.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f4",
+  "theme_color": "#16a34a",
+  "icons": [
+    { "src": "/favicon-logo/pwa-144x144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-logo/pwa-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-logo/pwa-384x384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-logo/pwa-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon-logo/pwa-maskable-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon-logo/pwa-maskable-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

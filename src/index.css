@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Design tokens — light theme defaults
+   --------------------------------------------------------------------------
+   Defined as CSS variables so a future dark theme can swap them via a single
+   class on <html> (e.g. .dark { --c-base: …; }) without touching the codebase.
+   Tailwind config references these via var() — see index.html.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --c-base:            #faf8f4;   /* cream off-white canvas */
+  --c-card:            #ffffff;   /* elevated surface */
+  --c-panel:           #f3efe7;   /* warm subtle separation */
+  /* Letterbox ground behind a photo. Sits between --c-base and --c-panel:
+     warm enough to read as a deliberate stage rather than "white that failed",
+     light enough that the photo still sits on it instead of in a tray.
+     Tuned against real photos — #fbfaf8 was indistinguishable from the card. */
+  --c-stage:           #f7f4ee;
+  --c-deep:            #ecfdf3;   /* accent-tinted surface (alias of accent-soft) */
+
+  /* Primary accent — green */
+  --c-accent:          #16a34a;
+  --c-accent-hover:    #15803d;
+  --c-accent-soft:     #ecfdf3;
+  --c-accent-border:   #bbf7d0;
+  --c-green:           #15803d;   /* darker green for text-on-white success labels */
+
+  /* Secondary accent — plum */
+  --c-secondary:        #7c5cbf;
+  --c-secondary-hover:  #644aa0;
+  --c-secondary-soft:   #f3eefb;
+  --c-secondary-border: #d6c5f0;
+
+  /* Misc accents */
+  --c-gold:            #d97706;
+
+  /* Warning */
+  --c-warn:            #b45309;
+  --c-warn-bg:         #fdf6e7;
+  --c-warn-border:     #f3e2b3;
+
+  /* Destructive */
+  --c-red:             #dc2626;
+  --c-red-muted:       #f87171;
+  --c-red-bg:          #fef2f2;
+  --c-red-border:      #fecaca;
+
+  /* Text — light to dark */
+  --c-text:            #1a1714;   /* main body */
+  --c-muted:           #4b4439;   /* secondary */
+  --c-dim:             #7a7268;   /* tertiary */
+  --c-faint:           #a89e8f;   /* placeholder / extremely de-emphasized */
+
+  /* Borders */
+  --c-border:          #e8e1d4;   /* default neutral */
+  --c-border-mid:      #d1fae5;   /* soft green */
+  --c-border-green:    #bbf7d0;   /* saturated green */
+
+  /* Radius scale */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+}
+
+html, body, #root {
+  height: 100%;
+  /* Stop iOS Safari from auto-inflating text (looks like the page loads
+     "zoomed in") when a wide block — e.g. the dashboard world-progress table —
+     is present. Pin the text scale to the layout. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--c-base);
+  color: var(--c-text);
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-faint);
+}
+
+/* World table row hover */
+.world-row:hover {
+  background: rgba(22, 163, 74, 0.05);
+}
+
+/* Sidebar on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+  .sidebar--open {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0 !important;
+  }
+  .topbar .hamburger {
+    display: block;
+  }
+  /* Belt-and-suspenders: never let a stray wide child create a horizontal
+     scroll / zoom-to-fit on phones. Wide tables keep their own overflow-x-auto
+     wrappers, so they still scroll internally. */
+  html, body, #root {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+}
+
+input, textarea, button {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+/* Plumbob animations — universal loader / brand flourish */
+@keyframes plumbob-bob {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes plumbob-glow {
+  0%, 100% { opacity: 0.22; transform: scale(1); }
+  50%      { opacity: 0.42; transform: scale(1.15); }
+}
+.plumbob-bob  { animation: plumbob-bob 2.4s ease-in-out infinite; }
+.plumbob-glow { animation: plumbob-glow 2.4s ease-in-out infinite; }
+
+/* Generic overlay enter/exit animations */
+@keyframes overlay-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes overlay-scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Randomizer sim card entrance — staggered with inline animationDelay */
+@keyframes sim-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.sim-enter { animation: sim-enter 0.34s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+
+/* Toast — rises from the bottom edge it's anchored to. */
+@keyframes toast-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.toast-enter { animation: toast-enter 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* A toast appears without being asked for, so it's the one thing in the app
+   that must not move for someone who has asked the OS to stop animation. */
+@media (prefers-reduced-motion: reduce) {
+  .toast-enter { animation: none; }
+}

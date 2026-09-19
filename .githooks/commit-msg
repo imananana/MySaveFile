@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Keep docs/product-facts/ level with the product.
+#
+# This is a commit-msg hook rather than pre-commit for one reason: the escape
+# hatch lives in the message, and pre-commit can't read it.
+#
+# Skip a commit deliberately with [no-facts] in the message — a refactor, a
+# test, a build tweak, anything a user could not notice.
+#
+# Installed by:  git config core.hooksPath .githooks
+
+if grep -qi '\[no-facts\]' "$1"; then
+  exit 0
+fi
+
+node scripts/factsCheck.mjs --staged

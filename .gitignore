@@ -1,0 +1,45 @@
+# Build output
+dist/
+dist-ssr/
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Vite cache
+.vite/
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Local env files
+.env
+.env.local
+.env.*.local
+server/.env
+
+# SQLite database
+server/data/
+
+# Editor/OS lock files and local agent state
+.claude/
+~$*
+
+# Internal docs — not for the public repo
+PRODUCT_FACTS.md
+BRAND_GUIDELINES.md
+
+# Local Sims .save snapshots used for parser diffing (large, personal)
+scripts/diagnostics/dynasty-snapshots/
+*.save
+scripts/diagnostics/venue-snapshots/
+.selftest
+
+# Raw product screenshots — 80MB+ of full-res PNGs that would sit in every
+# clone forever. The recipe that produces them is tracked; the images aren't,
+# and the handful the landing page actually ships live in public/landing/.
+mockups/screenshots/*.png
+mockups/screenshots/content/

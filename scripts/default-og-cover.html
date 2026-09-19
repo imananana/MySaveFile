@@ -1,0 +1,61 @@
+<!--
+  MySaveFile — Default OG / Social Cover (1200x630)
+  ★ SUPERSEDED 2026-09-18: the live card is the hand-designed public/og-card-v2.png
+  (DEFAULT_OG_IMAGE in scripts/seo-head.mjs). This template still renders to
+  public/og-default.png, which is kept ONLY because platforms cached that URL —
+  it carries the retired logo and copy, so don't wire it back in.
+  Site-wide fallback og:image so any page/guide without its own cover_image still
+  shares as a branded card. Rendered by scripts/render-guide-covers.mjs to
+  public/og-default.png.
+  Real plumbob injected from public/3d-clay-plumbob.svg; brand tokens match the app.
+-->
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#faf8f4; --green:#16a34a; --green-hover:#15803d;
+    --plum:#7c5cbf; --text:#1a1714; --muted:#4b4439; --dim:#7a7268; --border:#e8e1d4;
+    --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e7e0d4;font-family:var(--font);display:flex;flex-direction:column;
+       align-items:center;gap:18px;padding:32px;min-height:100vh}
+  .hint{font-size:13px;color:#6b6357;text-align:center;max-width:1200px}
+  .hint b{color:#3a342c}
+
+  .cover{position:relative;width:1200px;height:630px;background:var(--base);overflow:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    box-shadow:0 24px 60px -20px rgba(26,23,20,.35);font-family:var(--font);flex:0 0 auto}
+  .cover::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(1000px 560px at 50% -8%, #f3eefb 0%, transparent 60%),
+               radial-gradient(900px 560px at 50% 112%, #ecfdf3 0%, transparent 58%);
+    opacity:.95;pointer-events:none}
+  /* thin brand rule top for a finished edge */
+  .cover::after{content:"";position:absolute;left:0;right:0;top:0;height:8px;
+    background:linear-gradient(90deg,#16a34a 0%,#7c5cbf 100%)}
+
+  .stack{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+  .lockup{display:flex;align-items:center;gap:22px}
+  .lockup img{height:132px;width:auto;display:block}
+  .name{font-size:74px;font-weight:800;letter-spacing:-.022em;color:var(--text);line-height:1}
+  .tagline{margin-top:30px;font-size:17px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--plum)}
+  .value{margin-top:22px;font-size:29px;font-weight:600;color:var(--muted);letter-spacing:-.01em}
+  .url{position:absolute;z-index:2;bottom:40px;font-size:16px;font-weight:600;letter-spacing:.04em;color:var(--dim)}
+</style>
+
+<div class="hint">Default social/OG card (exactly <b>1200x630</b>). Captured to PNG and set as the site-wide fallback <b>og:image</b>.</div>
+
+<div class="cover">
+  <div class="stack">
+    <div class="lockup">
+      <img src="PLUMBOB_DATA_URI" alt="MySaveFile plumbob">
+      <span class="name">MySaveFile</span>
+    </div>
+    <div class="tagline">The Sims 4 Save Planner</div>
+    <div class="value">The only Sims&nbsp;4 planner that reads your save.</div>
+  </div>
+  <div class="url">mysavefile.com</div>
+</div>

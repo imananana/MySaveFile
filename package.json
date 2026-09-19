@@ -1,0 +1,48 @@
+{
+  "name": "sims-save-file-planner",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "vite --host",
+    "dev:server": "cd server && npm run dev",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs && cd server && npm install",
+    "prerender": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "preview:site": "node scripts/preview.mjs",
+    "cover-images": "node scripts/render-guide-covers.mjs",
+    "product-facts": "node scripts/buildProductFacts.mjs",
+    "facts:check": "node scripts/factsCheck.mjs",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "@sentry/react": "^10.53.1",
+    "nanoid": "^5.0.6",
+    "qfs-compression": "^0.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@sentry/vite-plugin": "^5.3.0",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.4",
+    "puppeteer": "25.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.0",
+    "vitest": "^1.6.0"
+  }
+}

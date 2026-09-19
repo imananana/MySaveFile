@@ -1,0 +1,11 @@
+import { readFileSync } from 'fs';
+import { parseDbpf } from '../../src/lib/dbpf.js';
+import { parseSaveData } from '../../src/lib/saveParser.js';
+const b = readFileSync(`${process.env.HOME}/Documents/Electronic Arts/The Sims 4/saves/Slot_00000007.save`);
+const save = parseSaveData(parseDbpf(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength)));
+const played = save.households.filter(h => h.isPlayed);
+const lot = save.households.filter(h => !h.isPlayed && h.lotId !== null);
+const floating = save.households.filter(h => !h.isPlayed && h.lotId === null);
+console.log(`Played (${played.length}):`, played.map(h=>h.name).join(', '));
+console.log(`Unplayed w/ lot (${lot.length}):`, lot.slice(0,8).map(h=>h.name).join(', '), '…');
+console.log(`Floating / no lot (${floating.length}):`, floating.slice(0,8).map(h=>h.name).join(', '), '…');
